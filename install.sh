@@ -37,7 +37,7 @@ then
     	
 		sudo apt install nala git curl -y
 
-    # APT : Preferances, Repos, & Mirrors
+    # APT : Preferences, Repos, & Mirrors
 
 		# Repo for VS CODE
 		wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -237,7 +237,7 @@ then
 		gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 		gsettings set org.gnome.shell.extensions.ding show-volumes true
 
-	touch $CONFIG/.EXTENSIONS
+	touch $CONFIG/.BaseSystem2
 fi
 
 if [[ -f "$CONFIG/.DEFAULT" ]]
@@ -287,7 +287,7 @@ else
 
     	chmod +x .AdditionalAPPS.sh
     	./.AdditionalAPPS.sh
-		rm ./.AdditionalAPPS.sh
+	rm ./.AdditionalAPPS.sh
 
 fi
 
