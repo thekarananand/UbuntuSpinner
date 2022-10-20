@@ -105,7 +105,7 @@ then
 		sudo nala install firefox vlc grub-customizer preload htop gnome-tweaks ubuntu-restricted-extras -y
     	sudo flatpak install flathub com.mattjakeman.ExtensionManager -y
 
-	# Laptop Specific Packages & Config
+    # Laptop Specific Packages & Config
 		if [[ -f "$CONFIG/.LAPTOP" ]]
 		then
 			sudo nala install tlp tlp-rdw touchegg -y 
@@ -116,10 +116,10 @@ then
 			
 		fi
 
-	# REPOMAN, POP-SHOP
+    # REPOMAN, POP-SHOP
 
 
-	# Install Extensions 
+    # Install Extensions 
     
 		mkdir .extensions
 		cd .extensions
@@ -170,7 +170,9 @@ then
 		
 		rm -r ./.extensions
 	
-	# GRUB CUSTOMIZER
+    # GRUB CUSTOMIZER
+    		sudo rm /etc/default/grub
+		sudo cp ./grubconfig/grub /etc/default/grub
 		sudo mkdir -p "/boot/grub/themes/"
 		sudo cp -a ./grubthemes/* /boot/grub/themes/
 		clear
