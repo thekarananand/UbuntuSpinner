@@ -12,7 +12,7 @@ mkdir -p $CONFIG
 if [[ ! -f "$CONFIG/.PROMPTED" ]]
 then
 
-    if zenity --question --no-wrap --title='Ubuntu Spinner' --text='Do you want to go with Automatic Default Setup ?\n\nThis will setup Base System and will install VSCODE + OnlyOffice + Calculus'
+    if zenity --question --no-wrap --title='Ubuntu Spinner' --text='Do you want to Default Apps ?\n\nThis will install VSCODE + OnlyOffice + Calculus'
     then
         touch $CONFIG/.DEFAULT
     fi
