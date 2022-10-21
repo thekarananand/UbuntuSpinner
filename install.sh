@@ -171,10 +171,20 @@ then
 		rm -r ./.extensions
 	
     # GRUB CUSTOMIZER
-    		sudo rm /etc/default/grub
-		sudo cp ./grubconfig/grub /etc/default/grub
+
 		sudo mkdir -p "/boot/grub/themes/"
 		sudo cp -a ./grubthemes/* /boot/grub/themes/
+		
+		sudo sed -i '/GRUB_GFXMODE=/d' /etc/default/grub
+		sudo sed -i '/GRUB_TIMEOUT=/d' /etc/default/grub
+		sudo sed -i '/GRUB_TIMEOUT_STYLE=/d' /etc/default/grub
+
+		sudo echo 'GRUB_GFXMODE="auto"' >> /etc/default/grub 
+		sudo echo 'GRUB_TIMEOUT="10"' >> /etc/default/grub
+		sudo echo 'GRUB_TIMEOUT_STYLE="menu"' >> /etc/default/grub
+
+		sudo update-grub
+		
 		clear
 		echo "+-------------------+"
 		echo "|  Grub Customizer  |"
