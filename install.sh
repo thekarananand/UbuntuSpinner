@@ -175,13 +175,18 @@ then
 		sudo mkdir -p "/boot/grub/themes/"
 		sudo cp -a ./grubthemes/* /boot/grub/themes/
 		
-		sudo sed -i '/GRUB_GFXMODE=/d' /etc/default/grub
-		sudo sed -i '/GRUB_TIMEOUT=/d' /etc/default/grub
-		sudo sed -i '/GRUB_TIMEOUT_STYLE=/d' /etc/default/grub
+		sudo cp /etc/default/grub ./
+		sudo rm /etc/default/grub
+		
+		sed -i '/GRUB_GFXMODE=/d' ./grub
+		sed -i '/GRUB_TIMEOUT=/d' ./grub
+		sed -i '/GRUB_TIMEOUT_STYLE=/d' ./grub
 
-		sudo echo 'GRUB_GFXMODE="auto"' >> /etc/default/grub 
-		sudo echo 'GRUB_TIMEOUT="10"' >> /etc/default/grub
-		sudo echo 'GRUB_TIMEOUT_STYLE="menu"' >> /etc/default/grub
+		echo 'GRUB_GFXMODE="auto"' >> ./grub 
+		echo 'GRUB_TIMEOUT="10"' >> ./grub
+		echo 'GRUB_TIMEOUT_STYLE="menu"' >> ./grub
+		
+		sudo mv ./grub /etc/default/
 
 		sudo update-grub
 		
