@@ -254,7 +254,8 @@ then
 		gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 		gsettings set org.gnome.shell.extensions.ding show-volumes true
 
-	touch $CONFIG/.BaseSystem2
+		touch $CONFIG/.BaseSystem2
+		killall -3 gnome-shell
 fi
 
 if [[ -f "$CONFIG/.DEFAULT" ]]
