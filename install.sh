@@ -78,15 +78,11 @@ then
         # APT mirrors
         sudo nala fetch --auto -y
 
-		touch $CONFIG/.APT
-
     # Clean Up
 
 		sudo nala remove --purge snapd remmina* libreoffice* rhythmbox* thunderbird* gnome-mines gnome-mahjongg gnome-sudoku aisleriot gnome-calendar gnome-shell-extension-ubuntu-dock gnome-todo totem transmission-gtk gnome-startup-applications simple-scan usb-creator-* transmission-common ubuntu-docs shotwell* gnome-user-docs yelp xorg-docs-core -y
 		sudo nala clean
 		sudo nala autoremove -y
-		
-		touch $CONFIG/.CleanUp
 
     # Flatpak Setup
     	
@@ -116,7 +112,7 @@ then
 			
 		fi
 
-    # REPOMAN, POP-SHOP
+    # instal baul 
 
 
     # Install Extensions 
