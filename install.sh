@@ -12,7 +12,7 @@ mkdir -p $CONFIG
 if [[ ! -f "$CONFIG/.PROMPTED" ]]
 then
 
-    if zenity --question --no-wrap --title='Ubuntu Spinner' --text='Do you want to Default Apps ?\n\nThis will install VSCODE + OnlyOffice + Calculus'
+    if zenity --question --no-wrap --title='Ubuntu Spinner' --text='Do you want to Default Apps ?\n\nThis will install VSCODE + OnlyOffice + Calculus + Notion (Unofficial)'
     then
         touch $CONFIG/.DEFAULT
     fi
@@ -165,6 +165,14 @@ then
 		cd ..
 		
 		rm -r ./.extensions
+		
+    # Install Pop-Shell
+    		sudo apt install make node-typescript -y
+		git clone https://github.com/pop-os/shell
+		cd shell
+		make local-install
+		cd ..
+		sudo rm -r shell
 	
     # GRUB CUSTOMIZER
 
@@ -177,10 +185,12 @@ then
 		sed -i '/GRUB_GFXMODE=/d' ./grub
 		sed -i '/GRUB_TIMEOUT=/d' ./grub
 		sed -i '/GRUB_TIMEOUT_STYLE=/d' ./grub
+		sed -i '/GRUB_THEME=/d' ./grub
 
 		echo 'GRUB_GFXMODE="auto"' >> ./grub 
 		echo 'GRUB_TIMEOUT="10"' >> ./grub
 		echo 'GRUB_TIMEOUT_STYLE="menu"' >> ./grub
+		echo 'GRUB_THEME="/boot/grub/themes/Sleek-Dark/theme.txt"' >> ./grub
 		
 		sudo mv ./grub /etc/default/
 
@@ -256,8 +266,12 @@ fi
 
 if [[ -f "$CONFIG/.DEFAULT" ]]
 then
-    sudo nala install code
+    sudo nala install code p7zip-rar -y
     sudo flatpak install flathub com.github.carlos157oliveira.Calculus org.onlyoffice.desktopeditors -y
+    wget https://raw.githubusercontent.com/puneetsl/lotion/master/setup.sh
+    chmod +x ./setup.sh
+    ./setup.sh native
+    rm ./setup.sh
 else
     
     # Optional Apps
@@ -297,6 +311,15 @@ else
 		if zenity --question --title='Ubuntu Spinner' --text='Install Calculus ?'
 		then
 			echo "sudo flatpak install flathub com.github.carlos157oliveira.Calculus -y" >> .AdditionalAPPS.sh
+		fi
+		
+		if zenity --question --title='Ubuntu Spinner' --text='Install Notion (Unofficial) ?'
+		then
+			echo "sudo apt install p7zip-rar -y" >> .AdditionalAPPS.sh
+			echo "wget https://raw.githubusercontent.com/puneetsl/lotion/master/setup.sh" >> .AdditionalAPPS.sh
+			echo "chmod +x ./setup.sh" >> .AdditionalAPPS.sh
+			echo "./setup.sh native" >> .AdditionalAPPS.sh
+			echo "rm ./setup.sh" >> .AdditionalAPPS.sh
 		fi
 
     	chmod +x .AdditionalAPPS.sh
