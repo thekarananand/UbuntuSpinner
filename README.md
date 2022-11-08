@@ -22,6 +22,23 @@ cd UbuntuSpinner
 ./install.sh
 ```
 
+# Visual Tweeks
+
+### Home Screen
+
+![HomeScreen.png](images/HomeScreen.png)
+
+### Workspaces
+
+![Workspaces.png](images/Workspaces.png)
+
+### Apps Grid
+
+![AppsGrid.png](images/AppsGrid.png)
+
+* After running the Script with Default Apps. 
+
+
 # GRUB Theme
 
 ![CyberRe.png](images/CyberRe.png)
