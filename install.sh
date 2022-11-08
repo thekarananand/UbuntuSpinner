@@ -246,6 +246,7 @@ then
 	# Tweaking Extensions
 
 		gsettings --schemadir $EXTENSIONS/lockkeys@vaina.lt/schemas/  set org.gnome.shell.extensions.lockkeys style 'capslock'	
+		
 		gsettings --schemadir $EXTENSIONS/date-menu-formatter@marcinjakubowski.github.com/schemas/ set org.gnome.shell.extensions.date-menu-formatter pattern 'EEEE, MMMM dd | hh : mm a'
 		
 		if [[ -f "$CONFIG/.LAPTOP" ]]
@@ -263,11 +264,12 @@ then
 		gsettings --schemadir $EXTENSIONS/just-perfection-desktop@just-perfection/schemas/ set org.gnome.shell.extensions.just-perfection clock-menu-position-offset 8
 		gsettings --schemadir $EXTENSIONS/just-perfection-desktop@just-perfection/schemas/ set org.gnome.shell.extensions.just-perfection notification-banner-position 2
 		gsettings --schemadir $EXTENSIONS/just-perfection-desktop@just-perfection/schemas/ set org.gnome.shell.extensions.just-perfection osd-position 5
+		
 		gsettings set org.gnome.shell.extensions.ding show-home false
+		gsettings set org.gnome.shell.extensions.ding show-volumes true
 		gsettings set org.gnome.shell.extensions.ding show-trash true
 		gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
-		gsettings set org.gnome.shell.extensions.ding show-volumes true
-
+		
 		touch $CONFIG/.BaseSystem2
 		killall -3 gnome-shell
 fi
