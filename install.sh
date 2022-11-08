@@ -112,7 +112,15 @@ then
 			
 		fi
 
-    # instal baul 
+    # Install New Software-Store
+    
+    		# I am currently in search of a better software store like Pop-Shop.
+    		# Building Pop-Shop from source brought some bugs.
+    
+    		# But Temporarily
+    
+    		sudo nala install gnome-software -y
+    
 
 
     # Install Extensions 
