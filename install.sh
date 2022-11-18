@@ -35,6 +35,7 @@ then
     
     # Install Pre-Req
     	
+		sudo apt update
 		sudo apt install nala git curl -y
 
     # APT : Preferences, Repos, & Mirrors
@@ -91,8 +92,6 @@ then
 
 	# Upgating Existing Packages
 		
-		sudo nala update
-		nala list --upgradable
 		sudo nala upgrade -y
 
 		sudo flatpak update -y
