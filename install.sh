@@ -323,6 +323,7 @@ else
 			echo "sudo flatpak install flathub com.github.carlos157oliveira.Calculus -y" >> .AdditionalAPPS.sh
 		fi
 		
+		# Source Build
 		if zenity --question --title='Ubuntu Spinner' --text='Install Notion (Unofficial) ?'
 		then
 			echo "sudo apt install p7zip-rar -y" >> .AdditionalAPPS.sh
