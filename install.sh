@@ -345,4 +345,6 @@ else
     	./.AdditionalAPPS.sh
 	rm ./.AdditionalAPPS.sh
 
+	dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop', 'vlc.desktop', 'code.desktop', 'android-studio.desktop', 'pycharm-community.desktop', 'dataspell.desktop', 'intellij-idea-community.desktop', 'Notion_native.desktop', 'org.onlyoffice.desktopeditors.desktop', 'com.github.eneshecan.WhatsAppForLinux.desktop']"
+
 fi
