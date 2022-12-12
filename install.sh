@@ -22,6 +22,16 @@ then
         touch $CONFIG/.LAPTOP
     fi
 
+	if zenity --question --title='Ubuntu Spinner' --text='Do you want Switchable Graphics?\n\nIt is recommended to install NVIDIA Drives beforehand, if you are using NVIDIA GPU.'
+    then
+        touch $CONFIG/.SwitchableGraphics
+    fi
+
+	if zenity --question --title='Ubuntu Spinner' --text='Do you want Ubuntu Dash?\n\nPress No to Replace it with Gnome-Dock'
+    then
+        touch $CONFIG/.keepDASH
+    fi
+
 	touch $CONFIG/.PROMPTED
 fi
 
@@ -65,6 +75,9 @@ then
 	    
         # Repo for Android Studio
 		sudo add-apt-repository ppa:maarten-fonville/android-studio -y
+
+		# Repo for Stacer
+		sudo add-apt-repository ppa:oguzhaninan/stacer
 		
 		# APT Preferances for NO Snaps
 		touch nosnap.pref
@@ -80,12 +93,20 @@ then
 		echo "Pin-Priority: 501" >> ./mozillateamppa
 		sudo mv ./mozillateamppa /etc/apt/preferences.d/
 
+		sudo nala update 
+
         # APT mirrors
         sudo nala fetch --auto -y
 
     # Clean Up
 
-		sudo nala remove --purge snapd remmina* libreoffice* rhythmbox* thunderbird* gnome-mines gnome-mahjongg gnome-sudoku aisleriot gnome-calendar gnome-shell-extension-ubuntu-dock gnome-todo totem transmission-gtk gnome-startup-applications simple-scan usb-creator-* transmission-common ubuntu-docs shotwell* gnome-user-docs yelp xorg-docs-core -y
+		sudo nala remove --purge snapd remmina* libreoffice* rhythmbox* thunderbird* gnome-mines gnome-mahjongg gnome-sudoku aisleriot gnome-system-monitor gnome-calendar gnome-todo totem transmission-gtk gnome-startup-applications simple-scan usb-creator-* transmission-common ubuntu-docs shotwell* gnome-user-docs yelp xorg-docs-core -y
+		
+		if [[ ! -f "$CONFIG/.keepDASH" ]]
+		then
+			sudo nala remove --purge gnome-shell-extension-ubuntu-dock -y
+		fi
+		
 		sudo nala clean
 		sudo nala autoremove -y
 
@@ -101,12 +122,16 @@ then
 		sudo flatpak update -y
 
     # Base Apps
-		sudo nala install firefox vlc grub-customizer preload htop gnome-tweaks ubuntu-restricted-extras -y
+		sudo nala install firefox vlc grub-customizer preload htop gnome-tweaks ubuntu-restricted-extras stacer -y
     	sudo flatpak install flathub com.mattjakeman.ExtensionManager -y
 
     # Laptop Specific Packages & Config
 		if [[ -f "$CONFIG/.LAPTOP" ]]
 		then
+			# Repo for Touchegg
+			sudo add-apt-repository ppa:touchegg/stable -y
+			sudo nala update
+			
 			sudo nala install tlp tlp-rdw touchegg -y 
 
 			sudo tlp start
@@ -122,10 +147,8 @@ then
     
     		# But Temporarily
     
-    		sudo nala install gnome-software -y
+    		sudo nala install gnome-software gnome-software-plugin-flatpak -y
     
-
-
     # Install Extensions 
     
 		mkdir .extensions
@@ -178,7 +201,7 @@ then
 		rm -r ./.extensions
 		
     # Install Pop-Shell
-    		sudo apt install make node-typescript -y
+    	sudo apt install make node-typescript -y
 		git clone https://github.com/pop-os/shell
 		cd shell
 		make local-install
@@ -232,6 +255,22 @@ fi
 
 if [[ ! -f "$CONFIG/.BaseSystem2" ]]
 then
+	
+	# Install Pop-Shell
+    	sudo apt install make node-typescript -y
+		git clone https://github.com/pop-os/shell
+		cd shell
+		make local-install
+		cd ..
+		sudo rm -r shell
+
+	# Installing Switchable Graphics
+		if [[ -f "$CONFIG/.SwitchableGraphics" ]]
+		then
+			sudo apt-add-repository ppa:system76-dev/stable
+			sudo apt install gnome-shell-extension-system76-power system76-power
+		fi
+
 	# Enabling Extensions
 		gnome-extensions enable blur-my-shell@aunetx
 		gnome-extensions enable date-menu-formatter@marcinjakubowski.github.com
@@ -345,6 +384,7 @@ else
     	./.AdditionalAPPS.sh
 	rm ./.AdditionalAPPS.sh
 
-	dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop', 'vlc.desktop', 'code.desktop', 'android-studio.desktop', 'pycharm-community.desktop', 'dataspell.desktop', 'intellij-idea-community.desktop', 'Notion_native.desktop', 'org.onlyoffice.desktopeditors.desktop', 'com.github.eneshecan.WhatsAppForLinux.desktop']"
-
 fi
+
+
+dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop', 'vlc.desktop', 'code.desktop', 'android-studio.desktop', 'pycharm-community.desktop', 'dataspell.desktop', 'intellij-idea-community.desktop', 'Notion_native.desktop', 'org.onlyoffice.desktopeditors.desktop', 'com.github.eneshecan.WhatsAppForLinux.desktop']"
