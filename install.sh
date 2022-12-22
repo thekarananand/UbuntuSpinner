@@ -76,10 +76,10 @@ then
         # Repo for Android Studio
 		sudo add-apt-repository ppa:maarten-fonville/android-studio -y
 
-		# Repo for Stacer
-		sudo add-apt-repository ppa:oguzhaninan/stacer
+	# Repo for Stacer
+		sudo add-apt-repository ppa:oguzhaninan/stacer -y
 		
-		# APT Preferances for NO Snaps
+	# APT Preferances for NO Snaps
 		touch nosnap.pref
 		echo "Package: snapd" >> ./nosnap.pref
 		echo "Pin: release a=*" >> ./nosnap.pref
@@ -96,7 +96,7 @@ then
 		sudo nala update 
 
         # APT mirrors
-        sudo nala fetch --auto -y
+        	sudo nala fetch --auto -y
 
     # Clean Up
 
@@ -113,9 +113,9 @@ then
     # Flatpak Setup
     	
 		sudo nala install flatpak -y
-    	sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    		sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-	# Upgating Existing Packages
+    # Upgating Existing Packages
 		
 		sudo nala upgrade -y
 
@@ -123,7 +123,7 @@ then
 
     # Base Apps
 		sudo nala install firefox vlc grub-customizer preload htop gnome-tweaks ubuntu-restricted-extras stacer -y
-    	sudo flatpak install flathub com.mattjakeman.ExtensionManager -y
+    		sudo flatpak install flathub com.mattjakeman.ExtensionManager -y
 
     # Laptop Specific Packages & Config
 		if [[ -f "$CONFIG/.LAPTOP" ]]
