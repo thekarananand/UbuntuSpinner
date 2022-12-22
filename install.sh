@@ -199,14 +199,6 @@ then
 		cd ..
 		
 		rm -r ./.extensions
-		
-    # Install Pop-Shell
-    	sudo apt install make node-typescript -y
-		git clone https://github.com/pop-os/shell
-		cd shell
-		make local-install
-		cd ..
-		sudo rm -r shell
 	
     # GRUB CUSTOMIZER
 
