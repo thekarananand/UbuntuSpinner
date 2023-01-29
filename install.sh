@@ -132,8 +132,8 @@ then
 			sudo nala install tlp tlp-rdw touchegg -y 
 
 			sudo tlp start
-			sudo systemctl enable tlp
-			sudo systemstl start tlp
+			sudo systemctl enable tlp.service
+			sudo systemstl start tlp.service
 			
 		fi
 
