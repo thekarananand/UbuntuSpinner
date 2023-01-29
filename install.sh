@@ -75,9 +75,6 @@ then
 	    
         # Repo for Android Studio
 		sudo add-apt-repository ppa:maarten-fonville/android-studio -y
-
-	# Repo for Stacer
-		sudo add-apt-repository ppa:oguzhaninan/stacer -y
 		
 	# APT Preferances for NO Snaps
 		touch nosnap.pref
